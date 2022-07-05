@@ -24,15 +24,16 @@ WORKDIR=./work
 EXTRACTDIR="$WORKDIR/extract"
 INSTALLDIR="$WORKDIR/installer"
 
-IN_IMAGE="ubuntu-bionic-amd64-mini"
+RELEASE="focal"
+IN_IMAGE="ubuntu-${RELEASE}-amd64-mini"
 ISO="${IN}/${IN_IMAGE}.iso"
 
 # Download the mini.iso if necessary
 [ -r "$ISO" ] || {
-    echo "Downloading Ubuntu Bionic mini.iso ..."
+    echo "Downloading Ubuntu ${RELEASE} mini.iso ..."
     rm -rf $IN
     mkdir -p $IN
-    URL="http://ftp.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso"
+    URL="http://ftp.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/mini.iso"
     echo "Using URL: $URL"
     wget -O $ISO $URL
 }
